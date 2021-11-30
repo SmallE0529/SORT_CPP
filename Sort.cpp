@@ -7,7 +7,7 @@ public:
         *b = temp;
     }
     
-    
+    //BUBBLE SORT
     void bubble_sort(vector<int>& nums)
     {
         int len = nums.size();
@@ -24,7 +24,8 @@ public:
             len--;
         }
     }
-    
+	
+    //INSERT SORT
     void insert_sort(vector<int>& nums)
     {
         int len = nums.size();
@@ -41,7 +42,28 @@ public:
             nums[j+1] = key;
         }
     }
+	
+	//SELECTION SORT
+    void select_sort(vector<int>& nums)
+    {
+        int len = nums.size();
+        for(int i = 0 ; i < len ; i++)
+        {
+            int min_idx = i;
+            int min = nums[i];
+            for(int j = i + 1 ; j < len ; j++)
+            {   
+                if(nums[j] < min)
+                {
+                    min_idx = j;
+                }
+            }
+            swap(&nums[i], &nums[min_idx]);
+        }
+    }
     
+	
+	//QUICK SORT
     /*int pratition(vector<int>& nums, int l, int r)
     {
         int pivot = nums[r];
@@ -95,38 +117,7 @@ public:
         
     }
     
-	void maxheap(vector<int>& nums, int root, int len)
-	{
-		int biggest = root;
-		int l = 2*root + 1;
-		int r = 2*root + 2;
-		
-		if(len > l && nums[biggest] < nums[l]) biggest = l;
-		if(len > r && nums[biggest] < nums[r]) biggest = r;
-		
-		if(biggest != root)
-		{
-			swap(&nums[root], nums[biggest]);
-			maxheap(nums, biggest, len);
-		}
-	}
-	
-    void heap_sort(vector<int>& nums)
-    {
-        int len = nums.size();
-		
-		for(int i = (len/2) - 1 ; i >= 0 ; i++)
-		{
-			maxheap(nums, i, len);
-		}
-		
-		for(int i = len - 1 ; i > 0 ; i++)
-		{
-			swap(&nums[i], nums[0]);
-			maxheap(nums, 0, i);
-		}
-    }
-    
+		//MERGE SORT
     /*void merge(vector<int>& nums, int l, int mid, int r)
     {
         vector<int> sub_l(nums.begin() + l, nums.begin() + mid + 1);
@@ -187,7 +178,6 @@ public:
         }
     }
     
-    
     void merge_sort(vector<int>& nums, int l, int r)
     {
         if(l >= r) return;
@@ -198,26 +188,42 @@ public:
         merge_sort(nums, mid + 1 , r);
         merge(nums, l, mid, r);
     }
-    
-    void select_sort(vector<int>& nums)
+	
+	//HEAP SORT
+	void maxheap(vector<int>& nums, int root, int len)
+	{
+		int biggest = root;
+		int l = 2*root + 1;
+		int r = 2*root + 2;
+		
+		if(len > l && nums[biggest] < nums[l]) biggest = l;
+		if(len > r && nums[biggest] < nums[r]) biggest = r;
+		
+		if(biggest != root)
+		{
+			swap(&nums[root], nums[biggest]);
+			maxheap(nums, biggest, len);
+		}
+	}
+	
+    void heap_sort(vector<int>& nums)
     {
         int len = nums.size();
-        for(int i = 0 ; i < len ; i++)
-        {
-            int min_idx = i;
-            int min = nums[i];
-            for(int j = i + 1 ; j < len ; j++)
-            {   
-                if(nums[j] < min)
-                {
-                    min_idx = j;
-                }
-            }
-            swap(&nums[i], &nums[min_idx]);
-        }
+		
+		for(int i = (len/2) - 1 ; i >= 0 ; i++)
+		{
+			maxheap(nums, i, len);
+		}
+		
+		for(int i = len - 1 ; i > 0 ; i++)
+		{
+			swap(&nums[i], nums[0]);
+			maxheap(nums, 0, i);
+		}
     }
     
-    void bucket(vector<int>& nums)
+	//BUCKET SORT
+    void bucket_sort(vector<int>& nums)
     {
         int len = nums.size();
         
@@ -242,13 +248,17 @@ public:
     
     
     vector<int> sortArray(vector<int>& nums) {
-        int len = nums.size();
+        
+		int len = nums.size();
+		
+		//bubble_sort(nums);
         //insert_sort(nums);
-        //bubble_sort(nums);
         //select_sort(nums);    
         //quick_sort(nums, 0, len-1);
         //merge_sort(nums, 0, len-1);
-        bucket(nums);
+		//heap_sort(nums);
+        //bucket_sort(nums);
+		
         return nums;
     }
 };
