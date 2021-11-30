@@ -42,7 +42,7 @@ public:
         }
     }
     
-    int pratition(vector<int>& nums, int l, int r)
+    /*int pratition(vector<int>& nums, int l, int r)
     {
         int pivot = nums[r];
         int j = l - 1;
@@ -69,6 +69,30 @@ public:
             quick_sort(nums, pivot + 1,  r);
         }
         
+    }*/
+    
+    void quick_sort(vector<int>& nums, int l, int r)
+    {
+        if(l >= r)
+        {
+            return;
+        }
+        
+        int pivot = l;
+        
+        for(int i = l ; i <= r-1 ; i++)
+        {
+            if(nums[i] < nums[r])
+            {
+                swap(&nums[pivot], &nums[i]);
+                pivot++;
+            }
+        }
+        swap(&nums[pivot], &nums[r]);
+
+        quick_sort(nums, l, pivot - 1);
+        quick_sort(nums, pivot + 1,  r);
+        
     }
     
     void heap_sort(vector<int>& nums)
@@ -76,7 +100,7 @@ public:
         int len = nums.size();
     }
     
-    void merge(vector<int>& nums, int l, int mid, int r)
+    /*void merge(vector<int>& nums, int l, int mid, int r)
     {
         vector<int> sub_l(nums.begin() + l, nums.begin() + mid + 1);
         vector<int> sub_r(nums.begin() + mid + 1, nums.begin() + r + 1);
@@ -100,17 +124,52 @@ public:
                 idx_r++;
             }
         }
+    }*/
+    
+    void merge(vector<int>& nums, int l, int mid, int r)
+    {
+        vector<int>temp(r - l + 1);
+        int i = l;
+        int j = mid + 1;
+        int k = 0;
+        
+        
+        while(i <= mid && j <= r)
+        {
+            if(nums[i] < nums[j])
+            {
+                temp[k++] = nums[i++];
+            }
+            else
+            {
+                temp[k++] = nums[j++];
+            }
+        }
+        
+        while(i <= mid)
+        {
+            temp[k++] = nums[i++];
+        }
+        while(j <= r)
+        {
+            temp[k++] = nums[j++];
+        }
+        for(int i = 0 ; i < k ; i++)
+        {
+            nums[l + i] = temp[i];
+        }
     }
+    
     
     void merge_sort(vector<int>& nums, int l, int r)
     {
-        if(l < r)
-        {
-            int mid = l + (r - l)/2;
-            merge_sort(nums, l , mid);
-            merge_sort(nums, mid + 1 , r);
-            merge(nums, l, mid, r);
-        }
+        if(l >= r) return;
+        
+        int mid = l + (r - l)/2;
+            
+        merge_sort(nums, l , mid);  
+        merge_sort(nums, mid + 1 , r);
+        merge(nums, l, mid, r);
     }
     
     void select_sort(vector<int>& nums)
@@ -131,14 +190,38 @@ public:
         }
     }
     
+    void bucket(vector<int>& nums)
+    {
+        int len = nums.size();
+        
+        map<int, int> temp;
+        map<int, int>::iterator it;
+        
+        for(int i = 0 ; i < len ; i++)
+        {
+            temp[nums[i]]++;
+        }
+        
+        int k = 0;
+        for(auto it = temp.begin() ; it != temp.end() ; it++)
+        {
+            int cnt = it->second;
+            for(int i = 0 ; i < cnt ; i++)
+            {
+                nums[k++] = it->first;
+            }
+        }
+    }
+    
     
     vector<int> sortArray(vector<int>& nums) {
         int len = nums.size();
-        insert_sort(nums);
-        bubble_sort(nums);
-        select_sort(nums);    
-        quick_sort(nums, 0, len-1);
-        merge_sort(nums, 0, len-1);
+        //insert_sort(nums);
+        //bubble_sort(nums);
+        //select_sort(nums);    
+        //quick_sort(nums, 0, len-1);
+        //merge_sort(nums, 0, len-1);
+        bucket(nums);
         return nums;
     }
 };
