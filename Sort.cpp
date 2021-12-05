@@ -17,9 +17,9 @@ public:
         {
             for(int i = 0; i < len - 1 ; i++)
             {
-                if(nums[i] > nums[i+1])
+                if(nums[i] > nums[i + 1])
                 {
-                    swap(&nums[i], &nums[i+1]);
+                    swap(&nums[i], &nums[i + 1]);
                 } 
             }
             len--;
@@ -41,7 +41,7 @@ public:
                 nums[j+1] = nuWms[j];
                 j--;
             }
-            nums[j+1] = key;
+            nums[j + 1] = key;
         }
     }
 
@@ -106,7 +106,7 @@ public:
 
         int pivot = l;
 
-        for(int i = l ; i <= r-1 ; i++)
+        for(int i = l ; i <= r - 1 ; i++)
         {
             if(nums[i] < nums[r])
             {
@@ -188,7 +188,7 @@ public:
             return; 
         }
 
-        int mid = l + (r - l)/2;
+        int mid = l + (r - l) / 2;
 
         merge_sort(nums, l , mid);  
         merge_sort(nums, mid + 1 , r);
@@ -199,8 +199,8 @@ public:
     void maxheap(vector<int>& nums, int root, int len)
     {
         int biggest = root;
-        int l = 2*root + 1;
-        int r = 2*root + 2;
+        int l = (2 * root) + 1;
+        int r = (2 * root) + 2;
 
         if(len > l && nums[biggest] < nums[l])
         {
@@ -223,7 +223,7 @@ public:
     {
         int len = nums.size();
 
-        for(int i = (len/2) - 1 ; i >= 0 ; i++)
+        for(int i = (len / 2) - 1 ; i >= 0 ; i++)
         {
             maxheap(nums, i, len);
         }
