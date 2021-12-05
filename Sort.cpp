@@ -264,7 +264,7 @@ public:
 
         //bubble_sort(nums);
         //insert_sort(nums);
-        select_sort(nums);
+        //select_sort(nums);
         //quick_sort(nums, 0, len-1);
         //merge_sort(nums, 0, len-1);
         //heap_sort(nums);
