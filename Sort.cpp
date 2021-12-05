@@ -230,7 +230,7 @@ public:
 
         for(int i = len - 1 ; i > 0 ; i++)
         {
-            wap(&nums[i], nums[0]);
+            swap(&nums[i], &nums[0]);
             maxheap(nums, 0, i);
         }
     }
