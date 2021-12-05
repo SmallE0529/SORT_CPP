@@ -35,7 +35,7 @@ public:
         {
             int key = nums[i];
             int j = i - 1;
-            
+
             while(j >= 0 && nums[j] > key)
             {
                 nums[j+1] = nuWms[j];
@@ -80,6 +80,7 @@ public:
                 swap(&nums[i], &nums[j]);
             }
         }
+
         j++;
         swap(&nums[j], &nums[r]);
         return j;
@@ -94,7 +95,6 @@ public:
             quick_sort(nums, l, pivot - 1);
             quick_sort(nums, pivot + 1,  r);
         }
-        
     }*/
     
     void quick_sort(vector<int>& nums, int l, int r)
@@ -114,24 +114,23 @@ public:
                 pivot++;
             }
         }
+
         swap(&nums[pivot], &nums[r]);
         quick_sort(nums, l, pivot - 1);
         quick_sort(nums, pivot + 1,  r);
-        
     }
 
     //MERGE SORT
     /*void merge(vector<int>& nums, int l, int mid, int r)
     {
+        int idx_l = 0;
+        int idx_r = 0;
         vector<int> sub_l(nums.begin() + l, nums.begin() + mid + 1);
         vector<int> sub_r(nums.begin() + mid + 1, nums.begin() + r + 1);
 
         sub_l.insert(sub_l.end(), INT_MAX);
         sub_r.insert(sub_r.end(), INT_MAX);
-        
-        int idx_l = 0;
-        int idx_r = 0;
-        
+                
         for (int i = l; i <= r; i++) 
         {
             if(sub_l[idx_l] < sub_r[idx_r])
@@ -170,10 +169,12 @@ public:
         {
             temp[k++] = nums[i++];
         }
+
         while(j <= r)
         {
             temp[k++] = nums[j++];
         }
+
         for(int i = 0 ; i < k ; i++)
         {
             nums[l + i] = temp[i];
@@ -182,7 +183,10 @@ public:
     
     void merge_sort(vector<int>& nums, int l, int r)
     {
-        if(l >= r) return;
+        if(l >= r)
+        {
+            return; 
+        }
 
         int mid = l + (r - l)/2;
 
@@ -198,8 +202,15 @@ public:
         int l = 2*root + 1;
         int r = 2*root + 2;
 
-        if(len > l && nums[biggest] < nums[l]) biggest = l;
-        if(len > r && nums[biggest] < nums[r]) biggest = r;
+        if(len > l && nums[biggest] < nums[l])
+        {
+            biggest = l;  
+        }
+
+        if(len > r && nums[biggest] < nums[r])
+        {
+            biggest = r;
+        }
 
         if(biggest != root)
         {
@@ -228,7 +239,7 @@ public:
     void bucket_rort(vector<int>& nums)
     {
         int len = nums.size();
-
+        int k = 0;
         map<int, int> temp;
         map<int, int>::iterator it;
 
@@ -236,8 +247,6 @@ public:
         {
             temp[nums[i]]++;
         }
-
-        int k = 0;
 
         for(auto it = temp.begin() ; it != temp.end() ; it++)
         {
