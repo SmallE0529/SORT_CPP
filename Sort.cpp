@@ -38,7 +38,7 @@ public:
 
             while(j >= 0 && nums[j] > key)
             {
-                nums[j+1] = nuWms[j];
+                nums[j + 1] = nuWms[j];
                 j--;
             }
             nums[j + 1] = key;
