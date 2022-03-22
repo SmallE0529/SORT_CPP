@@ -223,12 +223,12 @@ public:
     {
         int len = nums.size();
 
-        for(int i = (len / 2) - 1 ; i >= 0 ; i++)
+        for(int i = (len / 2) - 1 ; i >= 0 ; i--)
         {
             maxheap(nums, i, len);
         }
 
-        for(int i = len - 1 ; i > 0 ; i++)
+        for(int i = len - 1 ; i > 0 ; i--)
         {
             swap(&nums[i], &nums[0]);
             maxheap(nums, 0, i);
